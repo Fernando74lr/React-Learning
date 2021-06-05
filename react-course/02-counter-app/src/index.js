@@ -6,4 +6,4 @@ import './index.css';
 
 const divRoot = document.querySelector('#app');
 
-ReactDOM.render(<FirstApp />, divRoot);
+ReactDOM.render(<FirstApp data='This is a test' />, divRoot);

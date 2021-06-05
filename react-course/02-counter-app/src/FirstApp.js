@@ -1,13 +1,12 @@
 // import { Fragment } from "react";
 
-const FirstApp = () => {
-    const greeting = {
-        name: 'Fernando',
-        age: 20
-    };
+const FirstApp = ({ data='Hello world' }) => {
+
+    console.log(data);
+
     return (
         <>
-            <h1>Hello, I'm { greeting.name }</h1>
+            <h1>{ data }</h1>
             {/* <pre>{ JSON.stringify(greeting, null, 3) }</pre> */}
             <p>My first application</p>
         </>
