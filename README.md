@@ -1,4 +1,4 @@
-# React-Learning 🐱‍💻
+# React-Learning 🐱‍💻⚛️
 
 This is a repository where I keep all my React projects divided in 2 sections.
 
