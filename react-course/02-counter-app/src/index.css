@@ -2,7 +2,8 @@
 html, body {
     background-color: #21232A;
     color: white;
-    font-family: 'Courier New', Courier, monospace;
+    /* font-family: 'Courier New', Courier, monospace; */
+    font-family: 'Montserrat', sans-serif;
     font-size: 1.3rem;
     padding: 70px;
 }
