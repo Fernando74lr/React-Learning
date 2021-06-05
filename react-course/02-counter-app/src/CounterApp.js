@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 const CounterApp = ({ value }) => {
 
-    const [counter, setCounter] = useState(0);
+    const [counter, setCounter] = useState(value);
     console.log('~ counter:', counter);
 
     const handleAdd = () => {
@@ -11,17 +11,31 @@ const CounterApp = ({ value }) => {
         // setCounter( (c) => c + 1); /* If for some reason we don't have acces to, in this case, 'counter' */
     };
 
+    const handleSubstract = () => {
+        setCounter(counter - 1);
+    };
+
+    const handleReset = () => {
+        setCounter(value);
+    };
+
     return (
         <div>
             <h1>CounterApp</h1>
             <h2> { counter } </h2>
-            <button onClick={ handleAdd }>+1</button>
+            <button onClick={ handleAdd } className={ 'green' }>+1</button>
+            <button onClick={ handleReset } className={ 'red' }>Reset</button>
+            <button onClick={ handleSubstract } className={ 'yellow' }>-1</button>
         </div>
     )
 }
 
 CounterApp.propTypes = {
     value: PropTypes.number.isRequired
+}
+
+CounterApp.defaultProps = {
+    value: 0
 }
 
 export default CounterApp;
