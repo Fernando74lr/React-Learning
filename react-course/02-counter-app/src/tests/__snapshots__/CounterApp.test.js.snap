@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tests in <CounterApp /> should show <CounterApp /> correctly 1`] = `
+<div>
+  <h1>
+    CounterApp
+  </h1>
+  <h2>
+     
+    0
+     
+  </h2>
+  <button
+    className="green"
+    onClick={[Function]}
+  >
+    +1
+  </button>
+  <button
+    className="red"
+    onClick={[Function]}
+  >
+    Reset
+  </button>
+  <button
+    className="yellow"
+    onClick={[Function]}
+  >
+    -1
+  </button>
+</div>
+`;
