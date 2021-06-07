@@ -6,10 +6,7 @@ const FirstApp = ({ greeting, age, subtitle }) => {
     return (
         <>
             <h1>{ greeting }</h1>
-            <h2>I'm { age } years old</h2>
-            <h3>{ subtitle }</h3>
-            {/* <pre>{ JSON.stringify(greeting, null, 3) }</pre> */}
-            <p>My first application</p>
+            <p>{ subtitle }</p>
         </>
     );
 }

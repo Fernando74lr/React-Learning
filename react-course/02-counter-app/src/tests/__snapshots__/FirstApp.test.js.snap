@@ -5,16 +5,8 @@ exports[`Tests in <FirstApp /> should show <FirstApp /> correctly 1`] = `
   <h1>
     I'm Fernando
   </h1>
-  <h2>
-    I'm 
-    20
-     years old
-  </h2>
-  <h3>
-    I'm a subtitle
-  </h3>
   <p>
-    My first application
+    I'm a subtitle
   </p>
 </Fragment>
 `;
