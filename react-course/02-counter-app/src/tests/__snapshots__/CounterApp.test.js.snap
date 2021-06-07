@@ -7,7 +7,7 @@ exports[`Tests in <CounterApp /> should show <CounterApp /> correctly 1`] = `
   </h1>
   <h2>
      
-    50
+    0
      
   </h2>
   <button
