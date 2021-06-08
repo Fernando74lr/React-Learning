@@ -1,7 +1,10 @@
 
-import React, { useEffect }from 'react';
+import React, { useState, useEffect }from 'react';
+import GifGridItem from './GifGridItem';
 
 const GifGrid = ({ category }) => {
+
+    const [images, setImages] = useState([])
 
     /*
         This means I want to execute whatever
@@ -25,12 +28,25 @@ const GifGrid = ({ category }) => {
             }
         })
         console.log('~ gifs', gifs);
+
+        setImages(gifs);
         
     }
 
     return (
         <div>
             <h3>{ category }</h3>
+            <ol>
+                {
+                    images.map(img => (
+                        <GifGridItem
+                            key={ img.id }
+                            title={ img.title }
+                            url={ img.url }
+                        />
+                    ))
+                }
+            </ol>
         </div>
     )
 }
