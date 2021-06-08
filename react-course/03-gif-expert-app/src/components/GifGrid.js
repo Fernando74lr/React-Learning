@@ -1,7 +1,16 @@
 
-import React from 'react';
+import React, { useEffect }from 'react';
 
 const GifGrid = ({ category }) => {
+
+    /*
+        This means I want to execute whatever
+        is inside only the first time
+        this component is rendered.
+    */
+    useEffect( () => {
+        getGifs();
+    }, []);
 
     const getGifs = async() => {
 
@@ -18,8 +27,6 @@ const GifGrid = ({ category }) => {
         console.log('~ gifs', gifs);
         
     }
-
-    getGifs();
 
     return (
         <div>
