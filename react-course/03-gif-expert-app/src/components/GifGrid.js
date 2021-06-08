@@ -34,9 +34,9 @@ const GifGrid = ({ category }) => {
     }
 
     return (
-        <div>
+        <>
             <h3>{ category }</h3>
-            <ol>
+            <div className="card-grid">
                 {
                     images.map(img => (
                         <GifGridItem
@@ -46,8 +46,8 @@ const GifGrid = ({ category }) => {
                         />
                     ))
                 }
-            </ol>
-        </div>
+            </div>
+        </>
     )
 }
 
