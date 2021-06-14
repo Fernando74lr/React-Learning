@@ -9,9 +9,9 @@ const GifGrid = ({ category }) => {
 
     return (
         <>
-            <h3>{ category }</h3>
+            <h3 className="animate__animated animate__fadeIn">{ category }</h3>
 
-            { loading && <h4>Loading...</h4> }
+            { loading && <h4 className=" animate__animated animate__flash">Loading...</h4> }
             
             <div className="card-grid">
                 {

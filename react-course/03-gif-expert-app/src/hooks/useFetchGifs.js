@@ -15,12 +15,10 @@ import { getGifs } from '../helpers/getGifs';
     useEffect( () => {
         getGifs(category)
             .then( imgs => {
-                setTimeout(() => {
-                    setstate({
-                        data: imgs,
-                        loading: false
-                    });
-                }, 1500);
+                setstate({
+                    data: imgs,
+                    loading: false
+                });
             });
     }, [category]);
 
