@@ -14,5 +14,5 @@ export const getGifs = async(category) => {
     })
     console.log('~ gifs', gifs);
 
-   return gifs
+   return gifs;
 }
