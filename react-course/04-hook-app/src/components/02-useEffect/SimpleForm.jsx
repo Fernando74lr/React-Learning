@@ -61,9 +61,9 @@ const SimpleForm = () => {
                 />
             </div>
 
-            { name == 'Fernando' && <Message /> }
+            { name === ('Fernando' && <Message />) }
         </>
-    )
+    );
 }
 
-export default SimpleForm
+export default SimpleForm;
