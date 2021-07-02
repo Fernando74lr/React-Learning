@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import MemoHook from './components/06-memos/MemoHook';
+import CallBackHook from './components/06-memos/CallBackHook';
+// import MemoHook from './components/06-memos/MemoHook';
 // import Memorize from './components/06-memos/Memorize';
 // import LayoutEffect from './components/05-useLayoutEffect/LayoutEffect';
 // import RealExampleRes from './components/04-useRef/RealExampleRes';
@@ -15,7 +16,7 @@ import MemoHook from './components/06-memos/MemoHook';
 
 ReactDOM.render(
   <React.StrictMode>
-    <MemoHook />
+    <CallBackHook />
   </React.StrictMode>,
   document.getElementById('root')
 );
