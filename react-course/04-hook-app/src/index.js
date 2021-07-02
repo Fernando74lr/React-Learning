@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
-import RealExampleRes from './components/04-useRef/RealExampleRes';
+import LayoutEffect from './components/05-useLayoutEffect/LayoutEffect';
+// import RealExampleRes from './components/04-useRef/RealExampleRes';
 // import FocusScreen from './components/04-useRef/FocusScreen';
 // import MultipleCustomHooks from './components/03-examples/MultipleCustomHooks';
 // import SimpleForm from './components/02-useEffect/SimpleForm';
@@ -13,7 +13,7 @@ import RealExampleRes from './components/04-useRef/RealExampleRes';
 
 ReactDOM.render(
   <React.StrictMode>
-    <RealExampleRes />
+    <LayoutEffect />
   </React.StrictMode>,
   document.getElementById('root')
 );
