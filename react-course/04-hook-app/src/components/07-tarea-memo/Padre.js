@@ -30,7 +30,7 @@ export const Padre = () => {
                         numero={ n }
                         incrementar={ incrementar }
                     />
-                ))
+                )) 
             }
             {/* <Hijo /> */}
         </div>
