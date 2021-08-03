@@ -1,6 +1,7 @@
 import React, { useReducer, useEffect } from 'react';
 import useForm from '../../hooks/useForm';
 import './styles.css';
+import TodoList from './TodoList';
 import { todoReducer } from './todoReducer';
 
 const init = () => {
@@ -69,28 +70,11 @@ const TodoApp = () => {
 
             <div className="row">
                 <div className="col-7">
-                    <ul className="list-group list-group-flush">
-                        {
-                            todos.map((task, i) => (
-                                <li
-                                    key={ task.id }
-                                    className="list-group-item">
-                                    <p
-                                        className={ `${task.done && 'complete'}` }
-                                        onClick={ () => handleToggle(task.id) }
-                                    >
-                                        { i + 1}. { task.desc }
-                                    </p>
-                                    <button
-                                        className="btn btn-danger"
-                                        onClick={ () => handleDelete(task.id) }
-                                    >
-                                        Delete
-                                    </button>
-                                </li>
-                            ))
-                        }
-                    </ul>
+                    <TodoList
+                        todos={ todos }
+                        onHandleToggle={ handleToggle }
+                        onHandleDelete={ handleDelete }
+                    />
                 </div>
                 <div className="col-5">
                     <h4>Add To Do</h4>
