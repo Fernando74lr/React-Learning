@@ -1,6 +1,6 @@
 import React, { useReducer, useEffect } from 'react';
-import useForm from '../../hooks/useForm';
 import './styles.css';
+import TodoAdd from './TodoAdd';
 import TodoList from './TodoList';
 import { todoReducer } from './todoReducer';
 
@@ -18,34 +18,11 @@ const init = () => {
 const TodoApp = () => {
 
     const [ todos, dispatch ] = useReducer(todoReducer, [], init);
-    
-    const [ { description }, handleInputChange, reset ] = useForm({
-        description: ''
-    });
+
 
     useEffect(() => {
         localStorage.setItem('todos', JSON.stringify(todos));;
     }, [todos]);
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-
-        if (description.trim().length <= 1) return;
-
-        const newTodo = {
-            id: new Date().getTime(),
-            desc: description,
-            done: false
-        };
-
-        const action = {
-            type: 'add',
-            payload: newTodo
-        }
-
-        dispatch(action);
-        reset();
-    }
 
     const handleDelete = (id) => {
         const action = {
@@ -60,6 +37,13 @@ const TodoApp = () => {
         dispatch({
             type: 'toggle',
             payload: id
+        });
+    }
+
+    const handleAddTodo = (newTask) => {
+        dispatch({
+            type: 'add',
+            payload: newTask
         });
     }
     
@@ -77,26 +61,9 @@ const TodoApp = () => {
                     />
                 </div>
                 <div className="col-5">
-                    <h4>Add To Do</h4>
-                    <hr />
-                    
-                    <form onSubmit={ handleSubmit }>
-                        <input
-                            type="text"
-                            name="description"
-                            className="form-control"
-                            placeholder="Learn..."
-                            autoComplete="off"
-                            value={ description }
-                            onChange={ handleInputChange }
-                        />
-                        <button 
-                            type="submit"
-                            className="btn btn-outline-primary mt-1 btn-block"
-                        >
-                            Add Task
-                        </button>
-                    </form>
+                    <TodoAdd
+                        onHandleAddTodo={ handleAddTodo }
+                    />
                 </div>
             </div>
         </div>
