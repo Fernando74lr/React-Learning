@@ -1,33 +1,50 @@
-import React, { useReducer } from 'react';
+import React, { useReducer, useEffect } from 'react';
 import './styles.css';
+import TodoAdd from './TodoAdd';
+import TodoList from './TodoList';
 import { todoReducer } from './todoReducer';
 
-const initialState = [{
-    id: new Date().getTime(),
-    desc: 'Learn React',
-    done: false
-}];
+const init = () => {
+    // Returns the initial state
+    // return [{
+    //     id: new Date().getTime(),
+    //     desc: 'Learn React',
+    //     done: false
+    // }];
+
+    return JSON.parse(localStorage.getItem('todos')) || [];
+}
 
 const TodoApp = () => {
 
-    const [ todos, dispatch ] = useReducer(todoReducer, initialState);
-    console.log('~ todos', todos);
+    const [ todos, dispatch ] = useReducer(todoReducer, [], init);
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
 
-        const newTodo = {
-            id: new Date().getTime(),
-            desc: 'New task',
-            done: false
-        };
+    useEffect(() => {
+        localStorage.setItem('todos', JSON.stringify(todos));;
+    }, [todos]);
 
+    const handleDelete = (id) => {
         const action = {
-            type: 'add',
-            payload: newTodo
+            type: 'delete',
+            payload: id
         }
 
         dispatch(action);
+    }
+
+    const handleToggle = (id) => {
+        dispatch({
+            type: 'toggle',
+            payload: id
+        });
+    }
+
+    const handleAddTodo = (newTask) => {
+        dispatch({
+            type: 'add',
+            payload: newTask
+        });
     }
     
     return (
@@ -37,42 +54,16 @@ const TodoApp = () => {
 
             <div className="row">
                 <div className="col-7">
-                    <ul className="list-group list-group-flush">
-                        {
-                            todos.map((task, i) => (
-                                <li
-                                    key={ task.id }
-                                    className="list-group-item">
-                                    <p className="text-center">
-                                        { i + 1}. { task.desc }
-                                    </p>
-                                    <button className="btn btn-danger">
-                                        Delete
-                                    </button>
-                                </li>
-                            ))
-                        }
-                    </ul>
+                    <TodoList
+                        todos={ todos }
+                        onHandleToggle={ handleToggle }
+                        onHandleDelete={ handleDelete }
+                    />
                 </div>
                 <div className="col-5">
-                    <h4>Add To Do</h4>
-                    <hr />
-                    
-                    <form onSubmit={ handleSubmit }>
-                        <input
-                            type="text"
-                            name="description"
-                            className="form-control"
-                            placeholder="Learn..."
-                            autoComplete="off"
-                        />
-                        <button 
-                            type="submit"
-                            className="btn btn-outline-primary mt-1 btn-block"
-                        >
-                            Add Task
-                        </button>
-                    </form>
+                    <TodoAdd
+                        onHandleAddTodo={ handleAddTodo }
+                    />
                 </div>
             </div>
         </div>
