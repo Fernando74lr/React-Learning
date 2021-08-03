@@ -45,6 +45,15 @@ const TodoApp = () => {
         dispatch(action);
         reset();
     }
+
+    const handleDelete = (id) => {
+        const action = {
+            type: 'delete',
+            payload: id
+        }
+
+        dispatch(action);
+    }
     
     return (
         <div>
@@ -62,7 +71,10 @@ const TodoApp = () => {
                                     <p className="text-center">
                                         { i + 1}. { task.desc }
                                     </p>
-                                    <button className="btn btn-danger">
+                                    <button
+                                        className="btn btn-danger"
+                                        onClick={ () => handleDelete(task.id) }
+                                    >
                                         Delete
                                     </button>
                                 </li>
