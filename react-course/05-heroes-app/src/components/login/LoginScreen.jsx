@@ -2,7 +2,6 @@
 export const LoginScreen = ({ history }) => {
 
     const handleLogin = () => {
-        console.log("Click");
         // history.push('/'); // Te redirecciona a la ruta que quieras.
         history.replace('/'); // Hace un replace de la historia
     }

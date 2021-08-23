@@ -1,29 +1,76 @@
 import { Redirect, useParams } from "react-router-dom";
 import { getHeroeById } from "../../selectors/getHeroeById";
 
-export const HeroScreen = () => {
+export const HeroScreen = ({ history }) => {
 
     // Get params by URL
-    const { heroId } = useParams();
+    const { heroeId } = useParams();
     
-    const heroe = getHeroeById(heroId);
+    const heroe = getHeroeById(heroeId);
 
     if ( !heroe ) {
         return (<Redirect to="/" />);
     }
     
-    // const {
-    //     id,
-    //     superhero,
-    //     publisher,
-    //     alter_ego,
-    //     first_appearance,
-    //     characters
-    // } = heroe;
+    const {
+        superhero,
+        publisher,
+        alter_ego,
+        first_appearance,
+        characters
+    } = heroe;
+
+    const handleReturn = () => {
+        switch (publisher) {
+            case 'DC Comics':
+                history.push('/dc');
+                break;
+            case 'Marvel Comics':
+                history.push('/marvel');
+                break;
+     
+            default:
+                history.push('/');
+        }
+    };
 
     return (
-        <div>
-            <h1>Heroes Screen</h1>
+        <div className="row mt-5">
+            <div className="col-4">
+                <img
+                    src={`../assets/heroes/${heroeId}.jpg`}
+                    alt={ superhero }
+                    className="img-thumbnail"
+                />
+            </div>
+
+            <div className="col-8">
+                <h3> { superhero } </h3> <br />
+
+                <ul className="list-group list-group-flush">
+                    <li className="list-group-item">
+                        <b>Alter ego: </b> { alter_ego }
+                    </li>
+                    <li className="list-group-item">
+                        <b>Publisher: </b> { publisher }
+                    </li>
+                    <li className="list-group-item">
+                        <b>First Appearance: </b> { first_appearance }
+                    </li>
+                </ul> <br />
+
+                <h5> Characters </h5>
+                <p> { characters }</p>
+
+                <button
+                    className="btn btn-outline-primary"
+                    onClick={ () => handleReturn() }
+                >
+                    Regresar
+                </button>
+            </div>
+
+
         </div>
     );
 }
