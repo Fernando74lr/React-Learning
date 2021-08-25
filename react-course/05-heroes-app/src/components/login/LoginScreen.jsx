@@ -1,9 +1,22 @@
+import { useContext } from "react";
+import { AuthContext } from "../../auth/AuthContext";
+import { types } from "../../types/types";
 
 export const LoginScreen = ({ history }) => {
 
+    const { dispatch } = useContext(AuthContext);
+
     const handleLogin = () => {
         // history.push('/'); // Te redirecciona a la ruta que quieras.
-        history.replace('/'); // Hace un replace de la historia
+        // history.replace('/'); // Hace un replace de la historia
+        dispatch({
+            type: types.login,
+            payload: {
+                name: 'Fernando',
+            }
+        });
+
+        history.replace('/');
     }
 
     return (
