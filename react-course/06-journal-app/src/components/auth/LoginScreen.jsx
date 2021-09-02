@@ -1,8 +1,16 @@
 
 export const LoginScreen = () => {
     return (
-        <div>
-            <h1>LoginScreen</h1>
-        </div>
+        <>
+            <h3>Login</h3>
+
+            <form action="">
+                <input
+                    type="text"
+                    name="email"
+                    placeholder="Email"
+                />
+            </form>
+        </>
     );
 }
