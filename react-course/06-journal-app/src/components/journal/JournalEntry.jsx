@@ -24,6 +24,7 @@ export const JournalEntry = () => {
                 <span>Monday</span>
                 <h4>28</h4>
             </div>
+            
         </div>
     );
 }

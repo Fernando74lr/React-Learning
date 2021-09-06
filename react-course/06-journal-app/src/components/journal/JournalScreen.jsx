@@ -1,3 +1,4 @@
+import { NothingSelected } from "./NothingSelected";
 import { SideBar } from "./SideBar";
 
 export const JournalScreen = () => {
@@ -7,7 +8,7 @@ export const JournalScreen = () => {
             <SideBar />
 
             <main>
-                <h1>Main content</h1>
+                <NothingSelected />
             </main>
         </div>
     );
