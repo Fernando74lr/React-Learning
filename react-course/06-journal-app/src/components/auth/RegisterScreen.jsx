@@ -1,9 +1,12 @@
 import { Link } from "react-router-dom";
 import { useForm } from "../../hooks/useForm";
 import validator from 'validator';
-import { toast } from "../../helpers/sweetAlert2";
+import { removeError, setError } from "../../actions/ui";
+import { useDispatch } from "react-redux";
 
 export const RegisterScreen = () => {
+
+    const dispatch = useDispatch();
 
     // Form Hook
     const [ formValues, handleInputChange] = useForm({
@@ -22,20 +25,23 @@ export const RegisterScreen = () => {
         if (isFormValid()) {
             console.log({ name, email, password, password2 });
         }
-
     }
 
     const isFormValid = () => {
+        // Set error (if any)
         if (name.trim().length === 0) {
-            toast('error', 'Invalid name.');
+            dispatch(setError('Invalid name.'));
             return false;
         } else if (!validator.isEmail(email)) {
-            toast('error', 'Invalid email.');
+            dispatch(setError('Invalid email.'));
             return false;
         } else if (password !== password2 || password.length < 5) {
-            toast('error', 'Invalid password. It should be at least 6 characters and match each others.');
+            dispatch(setError('Invalid password. It should be at least 6 characters and match each others.'));
             return false;
         }
+
+        // Remove error
+        dispatch(removeError());
 
         return true;
     }
