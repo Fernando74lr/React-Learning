@@ -15,7 +15,7 @@ export const LoginScreen = () => {
     });
 
     // Extract data
-    const { email, password} = formValues;
+    const { email, password } = formValues;
 
     // Handle login
     const handleLogin = (e) => {

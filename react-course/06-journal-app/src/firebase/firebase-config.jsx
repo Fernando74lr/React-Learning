@@ -25,6 +25,7 @@ const googleAuthProvider = new GoogleAuthProvider();
  
 
 export{
+    app,
     db,
     googleAuthProvider
 }
