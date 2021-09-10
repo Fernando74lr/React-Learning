@@ -10,8 +10,8 @@ export const LoginScreen = () => {
 
     // Form Hook
     const [ formValues, handleInputChange] = useForm({
-        email: 'lopezramirez330@gmail.com',
-        password: '123456'
+        email: 'test1@test.com',
+        password: 'Carnitas3$'
     });
 
     // Extract data
@@ -23,6 +23,7 @@ export const LoginScreen = () => {
         dispatch(startLoginEmailPassword(email, password));
     }
 
+    // Handle Google login
     const handleGoogleLogin = () => {
         console.log('click');
         dispatch(startGoogleLogin());
