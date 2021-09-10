@@ -1,9 +1,12 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { startGoogleLogin, startLoginEmailPassword } from "../../actions/auth";
 import { useForm } from "../../hooks/useForm";
 
 export const LoginScreen = () => {
+
+    // Get data from state
+    const { loading } = useSelector(state => state.ui);
 
     // Dispatch Hook
     const dispatch = useDispatch();
@@ -56,6 +59,7 @@ export const LoginScreen = () => {
                 <button
                     className="btn btn-primary btn-block"
                     type="submit"
+                    disabled={ loading }
                 >
                     Login
                 </button>

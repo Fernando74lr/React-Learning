@@ -8,21 +8,21 @@ import {
 } from 'firebase/auth';
 import { googleAuthProvider } from "../firebase/firebase-config";
 import { types } from "../types/types";
+import { uiFinishLoading, uiStartLoading } from './loading';
 
 const auth = getAuth();
 
 export const startLoginEmailPassword = (email, password) => {
-    // This is an async actions and this returns and execute a callback.
-    // Thunk give us the dispatch
     return (dispatch) => {
+        dispatch(uiStartLoading());
         signInWithEmailAndPassword(auth, email, password)
             .then(({ user }) => {
-                dispatch(
-                    login(user.uid, user.displayName)
-                );
+                dispatch(login(user.uid, user.displayName));
+                dispatch(uiFinishLoading());
             })
             .catch(e => {
                 console.log(e);
+                dispatch(uiFinishLoading());
             })
     };
 }
