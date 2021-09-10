@@ -3,18 +3,21 @@ import { useForm } from "../../hooks/useForm";
 import validator from 'validator';
 import { removeError, setError } from "../../actions/ui";
 import { useDispatch, useSelector } from "react-redux";
+import { startRegisterWithEmailPasswordName } from "../../actions/auth";
 
 export const RegisterScreen = () => {
 
     const dispatch = useDispatch();
+
+    // Get data from state
     const { msgError } = useSelector(state => state.ui );
 
     // Form Hook
     const [ formValues, handleInputChange] = useForm({
         name: 'Fernando',
-        email: 'lopezramirez330@gmail.com',
-        password: '12345',
-        password2: '12345'
+        email: 'test1@test.com',
+        password: 'Carnitas3$',
+        password2: 'Carnitas3$'
     });
 
     // Extract data
@@ -25,6 +28,7 @@ export const RegisterScreen = () => {
         e.preventDefault();
         if (isFormValid()) {
             console.log({ name, email, password, password2 });
+            dispatch(startRegisterWithEmailPasswordName(email, password, name));
         }
     }
 
