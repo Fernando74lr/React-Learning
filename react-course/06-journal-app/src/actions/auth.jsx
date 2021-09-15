@@ -1,6 +1,7 @@
 
 import {
     getAuth,
+    signOut,
     signInWithPopup,
     createUserWithEmailAndPassword,
     updateProfile,
@@ -59,3 +60,14 @@ export const login = (uid, displayName) => ({
         displayName
     }
 });
+
+export const startLogout = () => {
+    return (dispatch) => {
+        signOut(auth);
+        dispatch(logout());
+    }
+}
+
+export const logout = () =>({
+    type: types.logout
+})
