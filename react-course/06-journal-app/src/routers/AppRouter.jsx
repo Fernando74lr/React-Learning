@@ -1,6 +1,6 @@
 // Routing
 import { getAuth, onAuthStateChanged } from "@firebase/auth";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import {
     BrowserRouter as Router,
@@ -17,15 +17,30 @@ import { AuthRouter } from "./AuthRouter";
 export const AppRouter = () => {
 
     const dispatch = useDispatch();
+
+    const [checking, setsChecking] = useState(true);
+
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
     
     useEffect(() => {
         const auth = getAuth();
         onAuthStateChanged(auth, (user) => {
             if (user?.uid) {
                 dispatch( login(user.uid, user.displayName) );
+                setIsLoggedIn(true);
+            } else {
+                setIsLoggedIn(false);
             }
+
+            setsChecking(false);
         })
-    }, [dispatch]);
+    }, [dispatch, setsChecking]);
+
+    if (checking) {
+        return (
+            <h1>Wait...</h1>
+        );
+    }
 
     return(
 		<Router>
