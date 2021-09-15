@@ -8,6 +8,7 @@ import {
     signInWithEmailAndPassword
 } from 'firebase/auth';
 import { googleAuthProvider } from "../firebase/firebase-config";
+import { toast } from '../helpers/sweetAlert2';
 import { types } from "../types/types";
 import { uiFinishLoading, uiStartLoading } from './loading';
 
@@ -20,10 +21,12 @@ export const startLoginEmailPassword = (email, password) => {
             .then(({ user }) => {
                 dispatch(login(user.uid, user.displayName));
                 dispatch(uiFinishLoading());
+                toast('success', `Welcome, ${user.displayName}!`)
             })
             .catch(e => {
-                console.log(e);
+                // console.log(e);
                 dispatch(uiFinishLoading());
+                toast('error', e.message.split(':')[1]);
             })
     };
 }
@@ -33,13 +36,12 @@ export const startRegisterWithEmailPasswordName = (email, password, name) => {
         createUserWithEmailAndPassword(auth, email, password)
             .then(async ({ user }) => {
                 await updateProfile(user, { displayName: name });
-
-                dispatch(
-                    login(user.uid, user.displayName)
-                );
+                dispatch( login(user.uid, user.displayName) );
+                toast('success', `Welcome, ${user.displayName}!`)
             })
             .catch(e => {
-                console.log(e);
+                // console.log(e);
+                toast('error', e.message.split(':')[1]);
             });
     }
 }
