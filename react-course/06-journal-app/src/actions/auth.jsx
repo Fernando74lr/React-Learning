@@ -11,6 +11,7 @@ import { googleAuthProvider } from "../firebase/firebase-config";
 import { toast } from '../helpers/sweetAlert2';
 import { types } from "../types/types";
 import { uiFinishLoading, uiStartLoading } from './loading';
+import { noteLogout } from './notes';
 
 const auth = getAuth();
 
@@ -66,7 +67,8 @@ export const login = (uid, displayName) => ({
 export const startLogout = () => {
     return (dispatch) => {
         signOut(auth);
-        dispatch(logout());
+        dispatch( logout() );
+        dispatch( noteLogout() );
     }
 }
 
