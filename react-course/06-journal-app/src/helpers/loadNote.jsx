@@ -13,8 +13,6 @@ export const loadNotes = async ( uid ) => {
             ...snapSon.data()
         })
     });
-
-    console.log(notes);
     
     return notes;
 }

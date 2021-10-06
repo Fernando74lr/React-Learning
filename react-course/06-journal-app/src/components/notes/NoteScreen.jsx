@@ -55,8 +55,8 @@ export const NoteScreen = () => {
                     (note.url) &&
                         <div className="notes__image">
                             <img
-                                src="https://cdn.hovia.com/app/uploads/Blue-Illustrated-Landscape-Mountains-Wallpaper-Mural-820x532.jpg"
-                                alt="mountains"
+                                src={ note.url }
+                                alt="img-note"
                             />
                         </div>
                 }

@@ -56,6 +56,7 @@ export const startSaveNote = ( note ) => {
         });
 
         dispatch(refreshNote( id, note ));
+        
         toast('success', 'Saved correctly');
     }
 }
@@ -75,8 +76,11 @@ export const startUpdloading = ( file ) => {
     return async ( dispatch, getState ) => {
         const { active:activeNote } = getState().notes;
 
-        const fileUrl = await fileUpload( file );
+        toast('info', 'Uploading...');
 
-        console.log(fileUrl);
+        const fileUrl = await fileUpload( file );
+        activeNote.url = fileUrl;
+
+        dispatch( startSaveNote(activeNote) );
     }
 }
