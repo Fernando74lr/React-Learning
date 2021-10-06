@@ -2,6 +2,7 @@ import { addDoc, collection, doc, updateDoc } from "@firebase/firestore";
 import { types } from '../types/types';
 import { db } from "../firebase/firebase-config";
 import { loadNotes } from "../helpers/loadNote";
+import { toast } from "../helpers/sweetAlert2";
 
 export const startNewNote = () => {
 	return async ( dispatch, getState ) => {
@@ -47,9 +48,24 @@ export const startSaveNote = ( note ) => {
 
         delete noteToFirestore.id;
         const dbRef = doc(db, `${uid}/journal/notes/${id}`);
+
         await updateDoc(dbRef, {
             url,
             ...noteToFirestore
         });
+
+        dispatch(refreshNote( id, note ));
+        toast('success', 'Saved correctly');
     }
 }
+
+export const refreshNote = ( id, note ) => ({
+    type: types.notesUpdated,
+    payload: {
+        id,
+        note: {
+            id,
+            ...note
+        }
+    }
+})
