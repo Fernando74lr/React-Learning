@@ -1,4 +1,4 @@
-import { addDoc, collection, doc, updateDoc } from "@firebase/firestore";
+import { addDoc, collection, doc, updateDoc, deleteDoc } from "@firebase/firestore";
 import { types } from '../types/types';
 import { db } from "../firebase/firebase-config";
 import { loadNotes } from "../helpers/loadNote";
@@ -55,8 +55,9 @@ export const startSaveNote = ( note ) => {
             ...noteToFirestore
         });
 
+        dispatch( startLoadingNotes( uid ) );
         dispatch(refreshNote( id, note ));
-        
+
         toast('success', 'Saved correctly');
     }
 }
@@ -84,3 +85,20 @@ export const startUpdloading = ( file ) => {
         dispatch( startSaveNote(activeNote) );
     }
 }
+
+export const startDeleting = ( id ) => {
+    return async ( dispatch, getState ) => {
+        const { uid } = getState().auth;
+
+        const dbRef = doc(db, `${uid}/journal/notes/${id}`);
+        await deleteDoc(dbRef);
+
+        toast('success', 'Deleted correctly!');
+        dispatch( deleteNote(id) );
+    }
+}
+
+export const deleteNote = ( id ) => ({
+    type: types.notesDelete,
+    payload: id
+});
