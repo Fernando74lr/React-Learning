@@ -1,4 +1,4 @@
-import { addDoc, collection } from "@firebase/firestore";
+import { addDoc, collection, doc, updateDoc } from "@firebase/firestore";
 import { types } from '../types/types';
 import { db } from "../firebase/firebase-config";
 import { loadNotes } from "../helpers/loadNote";
@@ -37,4 +37,19 @@ export const startLoadingNotes = ( uid ) => {
 export const setNotes = ( notes ) => ({
     type: types.notesLoad,
     payload: notes
-})
+});
+
+export const startSaveNote = ( note ) => {
+    return async ( dispatch, getState) => {
+        const { uid } = getState().auth;
+
+        const { id, url = null, ...noteToFirestore } = note;
+
+        delete noteToFirestore.id;
+        const dbRef = doc(db, `${uid}/journal/notes/${id}`);
+        await updateDoc(dbRef, {
+            url,
+            ...noteToFirestore
+        });
+    }
+}
